@@ -8,7 +8,7 @@
 Summary:      Extension to work with the Memcached caching daemon
 Name:         %{php_base}-pecl-memcached
 Version:      2.2.0
-Release:      0.vortex%{?dist}
+Release:      1.vortex%{?dist}
 License:      PHP
 Group:        Development/Languages
 URL:          http://pecl.php.net/package/%{pecl_name}
@@ -18,8 +18,9 @@ Source:       http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
 BuildRoot:    %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: %{php_base}-devel, %{php_base}-pear
-BuildRequires: libmemcached10-devel >= 1.0.13
 BuildRequires: zlib-devel
+%{?el6:BuildRequires: libmemcached10-devel >= 1.0.13}
+%{?el7:BuildRequires: libmemcached-devel}
 
 %description
 This extension uses libmemcached library to provide API for communicating
@@ -82,6 +83,9 @@ EOF
 
 
 %changelog
+* Tue May 26 2015 Ilya Otyutskiy <ilya.otyutskiy@icloud.com> - 2.2.0-1.vortex
+- Update buildreqs to fix el7.
+
 * Fri Oct  3 2014 Ilya Otyutskiy <ilya.otyutskiy@icloud.com - 2.2.0-0.vortex
 - Update to 2.2.0.
 
